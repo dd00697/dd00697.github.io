@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daniel Davis | Computer Vision and Machine Learning</title>
+  <meta name="description" content="Daniel Davis: computer vision and machine learning. Efficient multimodal learning and perception for robotics and embodied AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Daniel Davis | Computer Vision and Machine Learning">
+  <meta property="og:description" content="Computer vision and machine learning, with research in efficient multimodal learning and perception for robotics and embodied AI.">
+  <meta property="og:image" content="images/k12-schedule.png">
+  <meta property="og:image:alt" content="Visual token compaction schedule for a vision-language model">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daniel Davis | Computer Vision and Machine Learning">
+  <meta name="twitter:description" content="Computer vision and machine learning, with research in efficient multimodal learning and perception for robotics and embodied AI.">
+  <meta name="twitter:image" content="images/k12-schedule.png">
+  <meta name="twitter:image:alt" content="Visual token compaction schedule for a vision-language model">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+
+  <header>
+    <h1>Daniel Davis</h1>
+    <p class="tagline">Computer vision and machine learning · London, UK</p>
+  </header>
+
+  <main id="main">
+
+    <section aria-labelledby="about">
+      <h2 id="about">About</h2>
+      <p>
+        I work on computer vision and machine learning. I completed an MSc in Computer Vision, Robotics
+        and Machine Learning at the University of Surrey with Distinction. My dissertation asked when a
+        vision-language model can discard image tokens, and how much of the saving on paper shows up as
+        real speed.
+      </p>
+      <p>
+        I am a graduate software engineer at Compass Group, where I am building a gesture-controlled
+        interactive exhibit with MediaPipe. Before the MSc I took a BSc in Computer Science at Surrey.
+      </p>
+      <ul class="links" aria-label="Links">
+        <li><a href="mailto:daniel.davis3400@gmail.com">Email</a></li>
+        <li><a href="files/Daniel_Davis_CV.pdf">CV</a></li>
+        <li><a href="https://github.com/dd00697">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/daniel-davis-t34">LinkedIn</a></li>
+      </ul>
+      <p class="email-text">daniel.davis3400@gmail.com</p>
+    </section>
+
+    <section aria-labelledby="interests">
+      <h2 id="interests">Research interests</h2>
+      <p>
+        Perception and efficient multimodal learning for robotics and embodied AI: which visual evidence
+        a model needs for a task, and what discarding the rest saves in measured runtime. I am moving
+        towards physical AI and spatial AI.
+      </p>
+    </section>
+
+    <section aria-labelledby="research">
+      <h2 id="research">Research</h2>
+
+      <article class="entry wide">
+        <div>
+          <h3 class="title">What to Keep and When to Prune: Controlled Visual Token Compaction in LLaVA</h3>
+          <div class="meta"><strong>Daniel Davis</strong>. Unpublished manuscript from MSc research, University of Surrey, 2026.</div>
+          <div class="entry-links">
+            <a href="files/davis2026_what_to_keep.pdf">Manuscript PDF</a><a href="https://github.com/dd00697/efficient-vision-language-models">Research code</a>
+          </div>
+          <figure class="headline">
+            <div class="figscroll" tabindex="0" aria-label="Figure, scrolls sideways on small screens">
+            <img src="images/k12-schedule.png" width="2494" height="468" loading="lazy"
+                 alt="Flow diagram of the K12-QueryTopK-Z0 schedule: image encoder with 576 patches, dense decoder layers 1 to 12, query top-k keeps 48, 48 states through layers 13 to 20, zero tail removes the remaining 48 with no rescoring, then generation.">
+            </div>
+            <figcaption>Fig. 1 of the manuscript. All 576 visual tokens pass through 12 decoder layers, the 48 that best match the query continue to layer 20, and the last 12 layers process text only.</figcaption>
+          </figure>
+          <p>
+            Vision-language models such as LLaVA turn each image into 576 tokens and run all of them through
+            the language model. I tested a simple, training-free way to shorten that sequence. Choosing tokens
+            by the question beat a fixed grid by 4.54 points on RefCOCO grounding at identical visual token work.
+          </p>
+          <p>
+            The costs were just as clear. A 60.42% cut in visual token work and a 51.77% cut in modelled prefill
+            FLOPs gave only a 6.26% end-to-end speed-up. Accuracy on reading text in images (TextVQA) fell from
+            47.79% to 22.50%. Savings on paper, and quality on one task, need to be measured separately.
+          </p>
+          <p class="secondary">
+            Full MSc dissertation: <a href="files/davis2026_msc_dissertation.pdf">What to Keep and When to Prune: A Controlled Study of Query-Guided Visual Token Reduction in LLaVA</a> (PDF, 73 pages)
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="projects">
+      <h2 id="projects">Projects</h2>
+
+      <article class="entry">
+        <figure class="thumb">
+          <img src="images/actor-area-vs-iou.png" width="480" height="360" loading="lazy"
+               alt="Scatter plot of mean actor box area against mean frame IoU for JHMDB test clips. Clips with small actors tend to have lower IoU.">
+        </figure>
+        <div>
+          <h3 class="title">Action Recognition Using Vision Transformers</h3>
+          <div class="meta">Group project of five, Applied Machine Learning, University of Surrey, 2026.
+            With Charlie Boxall, Benjamin Brew, Divya Bisht and Thomas Corrigan.</div>
+          <div class="entry-links">
+            <a href="https://github.com/dd00697/Action-Recognition-Using-Vision-Transformers">Project code</a>
+          </div>
+          <p>
+            We fine-tuned TimeSformer, VideoMAE and ViViT on HMDBsimp, then built a DETR-style tubelet
+            detector on the VideoMAE backbone for JHMDB. On the test sets, VideoMAE reached 91.49% top-1 and
+            100% top-5, and the detector reached 73.8% frame-mAP and 76.1% video-mAP at IoU 0.5.
+          </p>
+          <p>
+            My part: the VideoMAE training pipeline, the JHMDB tubelet localisation pipeline, and the
+            localisation error analysis. The plot is from that analysis: actor size and frame IoU have a
+            moderate correlation (r ≈ 0.42), so small actors are harder to localise.
+          </p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <figure class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 200 150" focusable="false">
+            <rect width="200" height="150" fill="#f3f6fa"/>
+            <g stroke="#8a97a6" stroke-width="2.5" stroke-linecap="round" fill="none">
+              <polyline points="100,135 75,120 58,100 48,82 40,66"/>
+              <polyline points="100,135 82,80 78,58 76,42 74,28"/>
+              <polyline points="100,76 100,52 100,34 100,20"/>
+              <polyline points="117,80 120,58 122,42 124,30"/>
+              <polyline points="100,135 132,88 140,72 146,60 151,50"/>
+              <polyline points="82,80 100,76 117,80 132,88"/>
+            </g>
+            <g fill="#1772d0">
+              <circle cx="100" cy="135" r="4"/><circle cx="75" cy="120" r="3.5"/><circle cx="58" cy="100" r="3.5"/><circle cx="48" cy="82" r="3.5"/><circle cx="40" cy="66" r="3.5"/>
+              <circle cx="82" cy="80" r="3.5"/><circle cx="78" cy="58" r="3.5"/><circle cx="76" cy="42" r="3.5"/><circle cx="74" cy="28" r="3.5"/>
+              <circle cx="100" cy="76" r="3.5"/><circle cx="100" cy="52" r="3.5"/><circle cx="100" cy="34" r="3.5"/><circle cx="100" cy="20" r="3.5"/>
+              <circle cx="117" cy="80" r="3.5"/><circle cx="120" cy="58" r="3.5"/><circle cx="122" cy="42" r="3.5"/><circle cx="124" cy="30" r="3.5"/>
+              <circle cx="132" cy="88" r="3.5"/><circle cx="140" cy="72" r="3.5"/><circle cx="146" cy="60" r="3.5"/><circle cx="151" cy="50" r="3.5"/>
+            </g>
+          </svg>
+        </figure>
+        <div>
+          <h3 class="title">Compass Universe</h3>
+          <div class="meta">Compass Group UK &amp; Ireland, in development.</div>
+          <p>
+            Webcam-based gesture control with MediaPipe hand tracking for an interactive large-format exhibit,
+            built for real-time use at a distance.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="cv">
+      <h2 id="cv">CV</h2>
+      <p><a href="files/Daniel_Davis_CV.pdf">Download my CV (PDF)</a></p>
+    </section>
+
+  </main>
+
+  <footer>
+    Layout based on <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron's website template</a>.
+  </footer>
+</div>
+</body>
+</html>
